@@ -1,0 +1,1 @@
+FLASK_APP=star_trader.py

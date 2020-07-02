@@ -7,7 +7,7 @@ They needed a platform to sell used starships...
 # MVP
 - Ability to create new users and have user login with authorization
 - Users can buy and sell starships (include unique special ships)
-- Users can add new starships for sale (only basic not unique)
+- Users can post new starships for sale (only basic not unique)
 - Users can search for starships by starship class interface bar
 
 # BONUS / STRETCH GOALS
@@ -16,7 +16,7 @@ They needed a platform to sell used starships...
 - light and dark side (light/dark mode)
 - language translation (yoda speak and sith speak)
 - mapping for where in galaxy starships are located
-- way to earn credit (mingame?)
+- way to earn credits (mingame?)
 
 
 ## TECHNOLOGIES USED
