@@ -10,12 +10,12 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
     hashed_password = db.Column(db.String(100), nullable=False)
-    species = db.Column(db.Integer, db.ForeignKey("species.id"), nullable=False) #Come back to foreign key
+    species = db.Column(db.Integer, db.ForeignKey("species.id"), nullable=False) 
     bio = db.Column(db.String(1000))
     faction = db.Column(db.Boolean, default=False)
     credits = db.Column(db.Integer, nullable=False)
     user_image = db.Column(db.String(150), nullable=False)
-    rating = db.Column(db.Integer)
+    force_points = db.Column(db.Integer)
 
 
     @property
@@ -54,3 +54,22 @@ class Shiptype(db.Model):
     ship_image = db.Column(db.Integer, nullable=False)
     unique = db.Column(db.Boolean, default=False) 
 
+class Starships(db.Model):
+    __tablename__ = "starships"
+    id = db.Column(db.Integer, primary_key=True)
+    ship_type = db.Column(db.Integer, db.ForeignKey("shiptypes.id"))
+    custom_name = db.Column(db.String(75),)
+    sale_price = db.Column(db.Integer, nullable=False)
+    lightyears_traveled = db.Column(db.Integer, nullable=False)
+    owner = db.Column(db.Integer, db.ForeignKey("users.id"))
+    for_sale = db.Column(db.Boolean, default=True)
+
+
+class Transaction(db.Model):
+    __tablename__ = "transactions"
+    id = db.Column(db.Integer, primary_key=True )
+    buyer = db.Column(db.Integer, db.ForeignKey("users.id"))
+    seller = db.Column(db.Integer, db.ForeignKey("users.id"))
+    starship = db.Column(db.Integer, db.ForeignKey("starships.id"))
+    sale_price = db.Column(db.Integer, nullable=False)
+    sale_date = db.Column(db.DateTime, nullable=False)
