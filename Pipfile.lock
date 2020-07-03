@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fb486a0c4ab266ec1ef7064a9f4ff12963b2eb38188920fea8b3db2f999d25e9"
+            "sha256": "fc046674030464a77868eeb8a4f5154b58f830bd2aecc02ec3720dfd3a1cbe46"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -47,6 +47,14 @@
             "index": "pypi",
             "version": "==1.1.2"
         },
+        "flask-login": {
+            "hashes": [
+                "sha256:6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b",
+                "sha256:7451b5001e17837ba58945aead261ba425fdf7b4f0448777e597ddab39f4fba0"
+            ],
+            "index": "pypi",
+            "version": "==0.5.0"
+        },
         "flask-migrate": {
             "hashes": [
                 "sha256:4dc4a5cce8cbbb06b8dc963fd86cf8136bd7d875aabe2d840302ea739b243732",
@@ -62,6 +70,14 @@
             ],
             "index": "pypi",
             "version": "==2.4.3"
+        },
+        "flask-wtf": {
+            "hashes": [
+                "sha256:57b3faf6fe5d6168bda0c36b0df1d05770f8e205e18332d0376ddb954d17aef2",
+                "sha256:d417e3a0008b5ba583da1763e4db0f55a1269d9dd91dcc3eb3c026d3c5dbd720"
+            ],
+            "index": "pypi",
+            "version": "==0.14.3"
         },
         "isort": {
             "hashes": [
@@ -230,11 +246,11 @@
         },
         "python-dotenv": {
             "hashes": [
-                "sha256:25c0ff1a3e12f4bde8d592cc254ab075cfe734fc5dd989036716fd17ee7e5ec7",
-                "sha256:3b9909bc96b0edc6b01586e1eed05e71174ef4e04c71da5786370cebea53ad74"
+                "sha256:8c10c99a1b25d9a68058a1ad6f90381a62ba68230ca93966882a4dbc3bc9c33d",
+                "sha256:c10863aee750ad720f4f43436565e4c1698798d763b63234fb5021b6c616e423"
             ],
             "index": "pypi",
-            "version": "==0.13.0"
+            "version": "==0.14.0"
         },
         "python-editor": {
             "hashes": [
@@ -315,6 +331,14 @@
                 "sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"
             ],
             "version": "==1.12.1"
+        },
+        "wtforms": {
+            "hashes": [
+                "sha256:6ff8635f4caeed9f38641d48cfe019d0d3896f41910ab04494143fc027866e1b",
+                "sha256:861a13b3ae521d6700dac3b2771970bd354a63ba7043ecc3a82b5288596a1972"
+            ],
+            "index": "pypi",
+            "version": "==2.3.1"
         }
     },
     "develop": {}

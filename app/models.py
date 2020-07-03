@@ -6,6 +6,7 @@ db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
@@ -15,7 +16,9 @@ class User(db.Model, UserMixin):
     faction = db.Column(db.Boolean, default=False)
     credits = db.Column(db.Integer, nullable=False)
     user_image = db.Column(db.String(150), nullable=False)
-    force_points = db.Column(db.Integer)
+    force_points = db.Column(db.Integer, default=0)
+    
+    starship = db.relationship("Starship", back_populates="user" )
 
 
     @property
@@ -32,12 +35,14 @@ class User(db.Model, UserMixin):
 
 class Species(db.Model):
     __tablename__ = "species"
+
     id = db.Column(db.Integer, primary_key=True)
-    species_type = db.Column(db.String(50), nullable=False)
+    species_type = db.Column(db.String(75), nullable=False)
 
 
 class Shiptype(db.Model):
     __tablename__ = "shiptypes"
+
     id = db.Column(db.Integer, primary_key=True)
     type_name = db.Column(db.String(50), nullable=False)
     starship_class = db.Column(db.String(50), nullable=False)
@@ -51,11 +56,14 @@ class Shiptype(db.Model):
     cargo = db.Column(db.Integer, nullable=False)
     consumables = db.Column(db.Integer, nullable=False)
     cost_credits = db.Column(db.Integer, nullable=False)
-    ship_image = db.Column(db.Integer, nullable=False)
+    ship_image = db.Column(db.String(150), nullable=False)
     unique = db.Column(db.Boolean, default=False) 
 
-class Starships(db.Model):
+    ship = db.relationship("Starship", back_populates="starship_type")
+
+class Starship(db.Model):
     __tablename__ = "starships"
+
     id = db.Column(db.Integer, primary_key=True)
     ship_type = db.Column(db.Integer, db.ForeignKey("shiptypes.id"))
     custom_name = db.Column(db.String(75),)
@@ -64,9 +72,13 @@ class Starships(db.Model):
     owner = db.Column(db.Integer, db.ForeignKey("users.id"))
     for_sale = db.Column(db.Boolean, default=True)
 
+    user = db.relationship("User", back_populates="starship")
+    starship_type = db.relationship("Shiptype", back_populates="ship")
+
 
 class Transaction(db.Model):
     __tablename__ = "transactions"
+
     id = db.Column(db.Integer, primary_key=True )
     buyer = db.Column(db.Integer, db.ForeignKey("users.id"))
     seller = db.Column(db.Integer, db.ForeignKey("users.id"))
