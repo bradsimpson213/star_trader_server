@@ -133,11 +133,20 @@ def upgrade():
             'crew': 5, 'passenger': 75, 'cargo': 180000, 'consumables': '1 month', 'cost_credits': 240000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/05.jpg', 'unique': False}
         {'id': 9, 'type_name': 'Death Star', 'starship_class': 'Deep Space Mobile Station', 'manufacturer': 'Sienar Fleet System', 'model': 'D5-1 Orbital Battle Station', 'hyperdrive_rating': 4.0, 'mglt': 10, 'length': 120000,
          'crew': 342953, 'passenger': 843342, 'cargo': 1000000000000, 'consumables': '3 years', 'cost_credits': 1000000000000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/09.jpg', 'unique': True}
-        {'id':, 'type_name': '', 'starship_class': '', 'manufacturer': '', 'model': '', 'hyperdrive_rating': , 'mglt': , 'length': ,
-             'crew': , 'passenger': , 'cargo': , 'consumables': '', 'cost_credits': , 'ship_image': '', 'unique': False}
-        {'id':, 'type_name': '', 'starship_class': '', 'manufacturer': '', 'model': '', 'hyperdrive_rating': , 'mglt': , 'length': ,
-             'crew': , 'passenger': , 'cargo': , 'consumables': '', 'cost_credits': , 'ship_image': '', 'unique': False}
-
+        {'id': 10, 'type_name': 'Millennium Falcon', 'starship_class': 'Light Freighter', 'manufacturer': 'Corellian Engineering Corporation', 'model': 'YT-1300 Light Freighter', 'hyperdrive_rating': 0.5, 'mglt': 75, 'length': 35,
+         'crew': 4, 'passenger': 6, 'cargo': 100000, 'consumables': '2 months', 'cost_credits': 100000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/10.jpg', 'unique': True}
+        {'id': 11, 'type_name': 'Y-wing', 'starship_class': 'Starfighter', 'manufacturer': 'Koensayr Manufacturing', 'model': 'BTL Y-wing', 'hyperdrive_rating': 1.0, 'mglt': 80, 'length': 14,
+         'crew': 2, 'passenger': 0, 'cargo': 110, 'consumables': '1 week', 'cost_credits': 134999, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/11.jpg', 'unique': False}
+        {'id': 12, 'type_name': 'X-wing', 'starship_class': 'Starfighter', 'manufacturer': 'Incom Corporation', 'model': 'T-65 X-wing', 'hyperdrive_rating': 1.0, 'mglt': 100, 'length': 13,
+            'crew': 1, 'passenger': 0, 'cargo': 110, 'consumables': '1 week', 'cost_credits': 149999, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/12.jpg', 'unique': False}
+        {'id': 13, 'type_name': 'TIE Advanced x1', 'starship_class': 'Starfighter', 'manufacturer': 'Sienar Fleet System', 'model': 'Twin Ion Engine Advanced x1', 'hyperdrive_rating': 1.0, 'mglt': 105, 'length': 9,
+            'crew': 1, 'passenger': 0, 'cargo': 150, 'consumables': '5 days', 'cost_credits': 79999, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/13.jpg', 'unique': False}
+        {'id': 14, 'type_name': "Darth Vader's TIE Fighter", 'starship_class': 'Starfighter', 'manufacturer': 'Sienar Fleet System', 'model': 'Experimental Twin Engine Advnced x2', 'hyperdrive_rating': 1.0, 'mglt': 105, 'length': 10,
+            'crew': 1, 'passenger': 0, 'cargo': 150, 'consumables': '5 days', 'cost_credits': 135999, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/14.jpg', 'unique': True}
+        {'id': 15, 'type_name': 'Executor', 'starship_class': 'Star Dreadnought', 'manufacturer': 'Kuat Drive Yard', 'model': 'Executor-class Star Dreadnought', 'hyperdrive_rating': 2.0, 'mglt': 40, 'length': 19000,
+            'crew': 279144, 'passenger': 38000, 'cargo': 250000000, 'consumables': '6 years', 'cost_credits': 1143350000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/15.jpg', 'unique': True}
+        {'id': 17, 'type_name': 'Rebel Transport', 'starship_class': 'Medium Transport', 'manufacturer': 'Gallofree Yards, Inc.', 'model': 'GR-75 Medium Transport', 'hyperdrive_rating': 4.0, 'mglt': 20, 'length': 90,
+            'crew': 6, 'passenger': 90, 'cargo': 19000000, 'consumables': '6 months', 'cost_credits': 180000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/17.jpg', 'unique': False}
         ]
     )
     # ### end Alembic commands ###
