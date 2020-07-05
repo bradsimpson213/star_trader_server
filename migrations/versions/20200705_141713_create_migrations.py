@@ -1,8 +1,8 @@
-"""create migration file
+"""create migrations
 
-Revision ID: fe279241f82b
+Revision ID: 789b401726d6
 Revises: 
-Create Date: 2020-07-04 11:16:12.731884
+Create Date: 2020-07-05 14:17:13.153060
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fe279241f82b'
+revision = '789b401726d6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,7 +36,7 @@ def upgrade():
     sa.Column('unique', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('species',
+    species_table = op.create_table('species',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('species_type', sa.String(length=75), nullable=False),
     sa.PrimaryKeyConstraint('id')
@@ -80,15 +80,15 @@ def upgrade():
     sa.ForeignKeyConstraint(['starship'], ['starships.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    
-    op.bulk_insert(species,
-    [
-        {'id': 1, 'species_type': 'Human'},
-        {'id': 2, 'species_type': 'Driod'},
-        {'id': 3, 'species_type': 'Wookie'},
-        {'id': 4, 'species_type': 'Rodian'},
-        {'id': 5, 'species_type': 'Hutt'},
-        {'id': 6, 'species_type': "Yoda's Species"},
+
+    op.bulk_insert(species_table, 
+        [
+        {"id": 1, "species_type": "Human"},
+        { "id":2, "species_type":"Driod"},
+        {"id": 3, "species_type": "Wookie"},
+        {"id": 4, "species_type": "Rodian"},
+        {"id": 5, "species_type": "Hutt"},
+        {"id": 6, "species_type": "Yoda's Species"},
         {'id': 7, 'species_type': 'Trandoshan'},
         {'id': 8, 'species_type': 'Mon Calamari'},
         {'id': 9, 'species_type': 'Ewok'},
@@ -113,12 +113,15 @@ def upgrade():
         {'id': 28, 'species_type': 'Geonosian'},
         {'id': 29, 'species_type': 'Mirialan'},
         {'id': 30, 'species_type': 'Clawdite'},
-
-
-    ]
-)
-
-
+        {'id': 31, 'species_type': 'Besalisk'},
+        {'id': 32, 'species_type': 'Kaminoan'},
+        {'id': 33, 'species_type': 'Skakoan'},
+        {'id': 34, 'species_type': 'Muun'},
+        {'id': 35, 'species_type': 'Togruta'},
+        {'id': 36, 'species_type': 'Kaleesh'},
+        {'id': 37, 'species_type': "Pau'an"}
+        ]
+    )
     # ### end Alembic commands ###
 
 
