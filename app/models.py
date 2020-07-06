@@ -53,9 +53,9 @@ class Shiptype(db.Model):
     length = db.Column(db.Integer, nullable=False)
     crew = db.Column(db.Integer, nullable=False)
     passenger = db.Column(db.Integer, nullable=False)
-    cargo = db.Column(db.Integer, nullable=False)
+    cargo = db.Column(db.BigInteger, nullable=False)
     consumables = db.Column(db.String(30), nullable=False)
-    cost_credits = db.Column(db.Integer, nullable=False)
+    cost_credits = db.Column(db.BigInteger, nullable=False)
     ship_image = db.Column(db.String(150), nullable=False)
     unique = db.Column(db.Boolean, default=False) 
 
