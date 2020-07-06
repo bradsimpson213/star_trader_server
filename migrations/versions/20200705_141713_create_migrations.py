@@ -158,7 +158,23 @@ def upgrade():
         {'id': 28, 'type_name': 'A-wing', 'starship_class': 'Starfighter', 'manufacturer': 'Alliance Underground Engineering', 'model': 'RZ-I A-wing Interceptor', 'hyperdrive_rating': 1.0, 'mglt': 120, 'length': 10,
             'crew': 1, 'passenger': 0, 'cargo': 40, 'consumables': '1 week', 'cost_credits': 175000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/28.jpg', 'unique': False},
         {'id': 29, 'type_name': 'B-wing', 'starship_class': 'Starfighter', 'manufacturer': 'Slayn & Korpil', 'model': 'A/SF-01 B-wing Starfighter', 'hyperdrive_rating': 2.0, 'mglt': 91, 'length': 17,
-            'crew': 1, 'passenger': 0, 'cargo': 45, 'consumables': '1 week', 'cost_credits': 220000, 'ship_image': 'https: // starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/29.jpg', 'unique': False}
+            'crew': 1, 'passenger': 0, 'cargo': 45, 'consumables': '1 week', 'cost_credits': 220000, 'ship_image': 'https: // starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/29.jpg', 'unique': False},
+        {'id': 30, 'type_name': 'U-wing', 'starship_class': 'Starfighter', 'manufacturer': 'Incom Corporation', 'model': 'UT-60D U-wing Starfighter', 'hyperdrive_rating': 1.0, 'mglt': 95, 'length': 24,
+            'crew': 2, 'passenger': 8, 'cargo': 25000, 'consumables': '2 weeks', 'cost_credits': 130000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/30.jpg', 'unique': False},
+        {'id': 31, 'type_name': 'Republic Frigate', 'starship_class': 'Space Cruiser', 'manufacturer': 'Corellian Engineering Corporation', 'model': 'Consular-Class Cruiser', 'hyperdrive_rating': 2.0, 'mglt': 60, 'length': 115,
+            'crew': 9, 'passenger': 16, 'cargo': 120000, 'consumables': '3 months', 'cost_credits': 850000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/31.jpg', 'unique': False},
+        {'id': 39, 'type_name': 'Naboo Fighter', 'starship_class': 'Starfighter', 'manufacturer': 'Theed Palace Space Vessel Engineering Corps.', 'model': 'N-1 Starfighter', 'hyperdrive_rating': 1.0, 'mglt': 90, 'length': 11,
+            'crew': 1, 'passenger': 0, 'cargo': 65, 'consumables': '1 week', 'cost_credits': 200000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/39.jpg', 'unique': False},
+        {'id': 40, 'type_name': 'Naboo Royal Starship', 'starship_class': 'Transport', 'manufacturer': 'Theed palace Space Vessel Engineering Corps.', 'model': 'J-type 327 Nubian Royal Starship', 'hyperdrive_rating': 1.8, 'mglt': 95, 'length': 76,
+            'crew': 8, 'passenger': 20, 'cargo': 30000, 'consumables': '1 month', 'cost_credits': 535000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/40.jpg', 'unique': False},
+        {'id': 41, 'type_name': 'Scimitar', 'starship_class': 'Transport', 'manufacturer': 'Sienar Fleet Systems', 'model': 'Star Courier', 'hyperdrive_rating': 1.5, 'mglt': 75, 'length': 27,
+            'crew': 1, 'passenger': 6, 'cargo': 250000, 'consumables': '1 month', 'cost_credits': 5500000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/41.jpg', 'unique': False},
+        {'id': 43, 'type_name': 'J-Type Diplomatic Shuttle', 'starship_class': 'Transport', 'manufacturer': 'Theed palace Space Vessel Engineering Corps.', 'model': 'J-Type Diplomatic Shuttle', 'hyperdrive_rating': 0.7, 'mglt': 50, 'length': 39,
+            'crew': 5, 'passenger': 10, 'cargo': 175000, 'consumables': '1 year', 'cost_credits': 2000000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/43.jpg', 'unique': False},
+        {'id': 47, 'type_name': 'AA-9 Coruscant Freighter', 'starship_class': 'Freighter', 'manufacturer': 'Botajef Shipyards', 'model': 'Botajef AA-9 Freighter-Liner', 'hyperdrive_rating': 0.5, 'mglt': 50, 'length': 390,
+            'crew': 15, 'passenger': 30000, 'cargo': 750000, 'consumables': '3 months', 'cost_credits': 825700, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/47.jpg', 'unique': False},
+        {'id': 48, 'type_name': 'Jedi Starfighter', 'starship_class': 'Starfighter', 'manufacturer': 'Kuat Systems Engineering', 'model': 'Delta-7 Aethersprite-class Interceptor', 'hyperdrive_rating': 1.0, 'mglt': 95, 'length': 8,
+            'crew': 1, 'passenger': 0, 'cargo': 60, 'consumables': '1 week', 'cost_credits': 180000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/48.jpg', 'unique': False}
         ]
     )
     # ### end Alembic commands ###
