@@ -7,6 +7,7 @@ Create Date: 2020-07-05 14:17:13.153060
 """
 from alembic import op
 import sqlalchemy as sa
+from werkzeug.security import generate_password_hash
 
 
 # revision identifiers, used by Alembic.
@@ -36,11 +37,13 @@ def upgrade():
     sa.Column('unique', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+
     species_table = op.create_table('species',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('species_type', sa.String(length=75), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+
     users_table = op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -56,6 +59,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
+
     op.create_table('starships',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('ship_type', sa.Integer(), nullable=True),
@@ -68,6 +72,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['ship_type'], ['shiptypes.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('buyer', sa.Integer(), nullable=True),
@@ -81,14 +86,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    op.bulk_insert(species_table, 
+    op.bulk_insert(species_table,
         [
-        {"id": 1, "species_type": "Human"},
-        { "id":2, "species_type":"Driod"},
-        {"id": 3, "species_type": "Wookie"},
-        {"id": 4, "species_type": "Rodian"},
-        {"id": 5, "species_type": "Hutt"},
-        {"id": 6, "species_type": "Yoda's Species"},
+        {'id': 1, 'species_type': 'Human'},
+        {'id': 2, 'species_type': 'Driod'},
+        {'id': 3, 'species_type': 'Wookie'},
+        {'id': 4, 'species_type': 'Rodian'},
+        {'id': 5, 'species_type': 'Hutt'},
+        {'id': 6, 'species_type': "Yoda's Species"},
         {'id': 7, 'species_type': 'Trandoshan'},
         {'id': 8, 'species_type': 'Mon Calamari'},
         {'id': 9, 'species_type': 'Ewok'},
@@ -122,6 +127,29 @@ def upgrade():
         {'id': 37, 'species_type': "Pau'an"}
         ]
     )
+
+    op.bulk_insert(users_table, 
+        [
+        {'id': 1, 'name': 'Luke Skywalker', 'email': 'lukeskywalker@aol.com', 'hashed_password': generate_password_hash('force1'), 'species': 1, 'faction': True, 'credits': 1000000, 
+            'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/01.jpg', "force_points": 0},
+        {'id': 2, 'name': 'C-3PO', 'email': 'goldguy@gmail.com', 'hashed_password': generate_password_hash('masterluke'), 'species': 2, 'faction': True, 'credits': 1000,
+            'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/02.jpg', "force_points": 0},
+        {'id': 3, 'name': 'R2-D2', 'email': 'droid1@R2D2.net', 'hashed_password': generate_password_hash('xwingsrule4'), 'species': 2, 'faction': True, 'credits': 1000000,
+            'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/03.jpg', "force_points": 0},
+        {'id': 4, 'name': 'Darth Vader', 'email': 'darkside4life@hotmail.com', 'hashed_password': generate_password_hash('iamyourfather'), 'species': 1, 'faction': False, 'credits': 1500000,
+            'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/04.jpg', "force_points": 0},
+        {'id': 5, 'name': 'Leia Organa', 'email': 'goldenbikini@mac.com', 'hashed_password': generate_password_hash('ewoksarecute'), 'species': 1, 'faction': False, 'credits': 3000000,
+            'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/05.jpg', "force_points": 0},
+        {'id': 6, 'name': 'Owen Lars', 'email': 'larsevaporators@tatooine.org', 'hashed_password': generate_password_hash('evaporators'), 'species': 1, 'faction': True, 'credits': 50000,
+            'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/06.jpg', "force_points": 0}
+        ]
+    )
+
+
+# {'id': , 'name': '', 'email': '', 'hashed_password': generate_password_hash(''), 'species': , 'faction': , 'credits': ,
+#  'user_image': '', "force_points": 0},
+
+
 
     op.bulk_insert(shiptypes_table,
         [
@@ -163,7 +191,7 @@ def upgrade():
             'crew': 1, 'passenger': 0, 'cargo': 45, 'consumables': '1 week', 'cost_credits': 220000, 'ship_image': 'https: // starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/29.jpg', 'unique': False},
         {'id': 30, 'type_name': 'U-wing', 'starship_class': 'Starfighter', 'manufacturer': 'Incom Corporation', 'model': 'UT-60D U-wing Starfighter', 'hyperdrive_rating': 1.0, 'mglt': 95, 'length': 24,
             'crew': 2, 'passenger': 8, 'cargo': 25000, 'consumables': '2 weeks', 'cost_credits': 130000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/30.jpg', 'unique': False},
-        {'id': 31, 'type_name': 'Republic Frigate', 'starship_class': 'Space Cruiser', 'manufacturer': 'Corellian Engineering Corporation', 'model': 'Consular-Class Cruiser', 'hyperdrive_rating': 2.0, 'mglt': 60, 'length': 115,
+        {'id': 31, 'type_name': 'Republic Frigate', 'starship_class': 'Star Cruiser', 'manufacturer': 'Corellian Engineering Corporation', 'model': 'Consular-Class Cruiser', 'hyperdrive_rating': 2.0, 'mglt': 60, 'length': 115,
             'crew': 9, 'passenger': 16, 'cargo': 120000, 'consumables': '3 months', 'cost_credits': 850000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/31.jpg', 'unique': False},
         {'id': 33, 'type_name': 'Imperial Zeta-Class Cargo Shuttle', 'starship_class': 'Freighter', 'manufacturer': 'Sienar Fleet Systems', 'model': 'Zeta-Class Cargo Shuttle', 'hyperdrive_rating': 2.0, 'mglt': 60, 'length': 35,
             'crew': 2, 'passenger': 20, 'cargo': 450000, 'consumables': '2 weeks', 'cost_credits': 195000, 'ship_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/33.jpg', 'unique': False},
@@ -182,8 +210,6 @@ def upgrade():
         ]
     )
     # ### end Alembic commands ###
-#    {'id': , 'type_name': '', 'starship_class': '', 'manufacturer': '', 'model': '', 'hyperdrive_rating': , 'mglt': , 'length': ,
-#             'crew': , 'passenger': , 'cargo': , 'consumables': '', 'cost_credits': , 'ship_image': '', 'unique': False}
 
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
