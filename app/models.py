@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     species = db.Column(db.Integer, db.ForeignKey("species.id"), nullable=False) 
     bio = db.Column(db.String(1000))
     faction = db.Column(db.Boolean, default=False)
-    credits = db.Column(db.Integer, nullable=False)
+    credits = db.Column(db.BigInteger, nullable=False)
     user_image = db.Column(db.String(150), nullable=False)
     force_points = db.Column(db.Integer, default=0)
     
@@ -67,10 +67,11 @@ class Starship(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ship_type = db.Column(db.Integer, db.ForeignKey("shiptypes.id"))
     custom_name = db.Column(db.String(75),)
-    sale_price = db.Column(db.Integer, nullable=False)
+    sale_price = db.Column(db.BigInteger, nullable=False)
     lightyears_traveled = db.Column(db.Integer, nullable=False)
     owner = db.Column(db.Integer, db.ForeignKey("users.id"))
     for_sale = db.Column(db.Boolean, default=True)
+    post_date = db.Column(db.DateTime, nullable=False)
 
     user = db.relationship("User", back_populates="starship")
     starship_type = db.relationship("Shiptype", back_populates="ship")
@@ -83,5 +84,5 @@ class Transaction(db.Model):
     buyer = db.Column(db.Integer, db.ForeignKey("users.id"))
     seller = db.Column(db.Integer, db.ForeignKey("users.id"))
     starship = db.Column(db.Integer, db.ForeignKey("starships.id"))
-    sale_price = db.Column(db.Integer, nullable=False)
+    sale_price = db.Column(db.BigInteger, nullable=False)
     sale_date = db.Column(db.DateTime, nullable=False)
