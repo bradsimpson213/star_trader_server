@@ -29,7 +29,7 @@ They needed a platform to sell used starships...
 
 ## DATABASE SCHEMA & MODELS
 
-<img src='star-trader-schema.png>
+<img src='star-trader-schema.png'/>
 
 ### TABLE USERS
 - id (integer, primary key)

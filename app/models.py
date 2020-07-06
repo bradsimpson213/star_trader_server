@@ -65,7 +65,7 @@ class Starship(db.Model):
     __tablename__ = "starships"
 
     id = db.Column(db.Integer, primary_key=True)
-    ship_type = db.Column(db.Integer, db.ForeignKey("shiptypes.id"))
+    ship_type = db.Column(db.Integer, db.ForeignKey("shiptypes.id"), nullable=False)
     custom_name = db.Column(db.String(75),)
     sale_price = db.Column(db.BigInteger, nullable=False)
     lightyears_traveled = db.Column(db.Integer, nullable=False)
