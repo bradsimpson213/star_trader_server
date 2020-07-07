@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('lightyears_traveled', sa.Integer(), nullable=False),
     sa.Column('owner', sa.Integer(), nullable=True),
     sa.Column('for_sale', sa.Boolean(), nullable=True),
-    sa.Column('seller_comment', sa.String(250), nullable=True)
+    sa.Column('seller_comment', sa.String(250), nullable=True),
     sa.Column('post_date', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['owner'], ['users.id'], ),
     sa.ForeignKeyConstraint(['ship_type'], ['shiptypes.id'], ),
@@ -36,19 +36,16 @@ def upgrade():
 
     op.bulk_insert(starships_table,
         [
-        {'id': 1, 'ship_type': 10, 'custom_name': None, 'sale_price': 1000000, 'lightyears_traveled': 24999, 'owner': 14, 'for_sale': True, 'seller_comment': '"The ship that made the Kessel Run in 12 parsecs!", 'post_date': datetime.datetime.now() }
-        {'id': 2, 'ship_type': 9, 'custom_name': None, 'sale_price': 1000000000000, 'lightyears_traveled': 5, 'owner': 12, 'for_sale': True, 'seller_comment': "Low Mileage!  Slightly used, great for destroying planets and rebel bases.  WARNING Keep Skywalkers away from exhaust ports!", 'post_date': datetime.datetime.now()}
-        {'id': 3, 'ship_type': 48, 'custom_name': "Obe-Wan's Jedi Starfighter", 'sale_price': 220000, 'lightyears_traveled': 57899, 'owner': 10, 'for_sale': True, 'seller_comment': "Ship priced to move ASAP! Need credits fast to head to Alderaan with Luke!  Spent many years burried in the sand of Tatooine, sand everywhere...", 'post_date': datetime.datetime.now()}
-        {'id': 4, 'ship_type': 14, 'custom_name': None, 'sale_price': 119999, 'lightyears_traveled': 67899 , 'owner': 4, 'for_sale': True, 'seller_comment': "The Emperor is buying me a new TIE Fighter, need to sell this one.  Serious inquiries only. No rebel scum please",'post_date': datetime.datetime.now()}
+        {'id': 1, 'ship_type': 10, 'custom_name': None, 'sale_price': 1000000, 'lightyears_traveled': 24999, 'owner': 14, 'for_sale': True, 'seller_comment': "The ship that made the Kessel Run in 12 parsecs!", 'post_date': datetime.datetime.now() },
+        {'id': 2, 'ship_type': 9, 'custom_name': None, 'sale_price': 1000000000000, 'lightyears_traveled': 5, 'owner': 12, 'for_sale': True, 'seller_comment': "Low Mileage!  Slightly used, great for destroying planets and rebel bases.  WARNING Keep Skywalkers away from exhaust ports!", 'post_date': datetime.datetime.now()},
+        {'id': 3, 'ship_type': 48, 'custom_name': "Obe-Wan's Jedi Starfighter", 'sale_price': 220000, 'lightyears_traveled': 57899, 'owner': 10, 'for_sale': True, 'seller_comment': "Ship priced to move ASAP! Need credits fast to head to Alderaan with Luke!  Spent many years burried in the sands of Tatooine, sand everywhere...", 'post_date': datetime.datetime.now()},
+        {'id': 4, 'ship_type': 14, 'custom_name': None, 'sale_price': 119999, 'lightyears_traveled': 67899 , 'owner': 4, 'for_sale': True, 'seller_comment': "The Emperor is buying me a new TIE Fighter, need to sell this one.  Serious inquiries only. No rebel scum please",'post_date': datetime.datetime.now()},
         {'id': 5, 'ship_type': 27, 'custom_name': "Home 1", 'sale_price': 100000000, 'lightyears_traveled': 124995, 'owner': 27, 'for_sale': True, 'seller_comment': "It's a trap!  No price should be this low for a ship this great!",'post_date': datetime.datetime.now()}
-        {'id': 6, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
-        {'id': 7, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
-        {'id': 8, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
-        {'id': 9, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
-        {'id': 10, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '', 'post_date': datetime.datetime.now()}
-        
-        
-        
+        # {'id': 6, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
+        # {'id': 7, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
+        # {'id': 8, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
+        # {'id': 9, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
+        # {'id': 10, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '', 'post_date': datetime.datetime.now()}
         ]
     )
     # ### end Alembic commands ###
