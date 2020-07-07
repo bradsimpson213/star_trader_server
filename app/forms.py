@@ -8,6 +8,9 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Login")
 
+    # def to_dict(self):
+    # return {"id": self.id, "email": self.email}
+
 
 class CreateUser(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])

@@ -20,7 +20,8 @@ psycopg2-binary = "*"
 flask-login = "*"
 wtforms = "*"
 flask-wtf = "*"
-jwt = "*"
+flask-cors = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.8"

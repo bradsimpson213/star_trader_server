@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 import jwt
 from flask_login import login_required
 
@@ -7,16 +7,24 @@ from ..models import db, User
 from ..forms import LoginForm, CreateUser
 
 
-bp = Blueprint("users", __name__, url_prefix="")
+bp = Blueprint("users", __name__, url_prefix="/users")
 
+# LOGIN WITH WTFORMS
+ 
+# @bp.route("/login", methods=['GET', 'POST'])
+# def user_login():
+#     form = LoginForm()
+#     print(request.method)
+#     if request.method == 'GET':
+#         return ('', {'csrf_token': form.csrf_token._value()})
+#     elif form.validate_on_submit():
+#         return {'message': 'Login successful'}, 200
+#     else:
+#         return {'errors': form.errors}
 
-@bp.route("/login", methods=["GET"])
-def user_login_form();
-    form = LoginForm
-    return { "form": form.to_dict() }
+# LOGIN NOT USING WTFORMS
 
-
-@bp.route("/login" methods=["POST"])
+@bp.route("/login", methods=["POST"])
 def user_login():
     data = request.json
     user = User.query.filter(User.email == data['email']).first()
@@ -30,7 +38,20 @@ def user_login():
         return {"error": "Incorrect password"}, 401
 
 
-# @bp.route("/add", methods=['GET', 'POST'])
-# def creat_user():
-#     form = CreateUser()
-#     return "<h1> Create a new user Rebel Scum!</h1>"
+# CREATE USER WITH WTFORMS
+
+@bp.route("/create", methods=['GET', 'POST'])
+def user_create():
+    form = CreateUser()
+    print(request.method)
+    if request.method == 'GET':
+        return ('', {'csrf_token': form.csrf_token._value()})
+    elif form.validate_on_submit():
+
+        return {'message': 'User Created Successful'}, 200
+    else:
+        return {'errors': form.errors}
+
+
+
+

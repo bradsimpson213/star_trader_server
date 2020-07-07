@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
     
     starship = db.relationship("Starship", back_populates="user" )
 
-
     @property
     def password(self):
         return self.hashed_password
@@ -31,6 +30,10 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def to_dict(self):
+        return {"id": self.id, "name": self.name, "email": self.email, "species": self.species, "bio": self.bio,
+            "faction": self.faction, "credit": self.credits, "user_image": self.user_image, "force_points": self.force_points }
 
 
 class Species(db.Model):
@@ -61,6 +64,12 @@ class Shiptype(db.Model):
 
     ship = db.relationship("Starship", back_populates="starship_type")
 
+    def to_dict(self):
+        return {"id": self.id, "type_name": self.type_name, "starship_class": self.starship_class, "manufacturer": self.manufacturer,
+                "model": self.model, "hyperdrive_rating": self.hyperdrive_rating, "mglt": self.mglt, "length": self.length,
+                "crew": self.crew, "passenger": self.passenger, "cargo": self.cargo, "consumables": self.consumables, 
+                "cost_credits": self.cost_credits, "ship_image": self.ship_image, "unique": self.unique }
+
 class Starship(db.Model):
     __tablename__ = "starships"
 
@@ -85,4 +94,5 @@ class Transaction(db.Model):
     seller = db.Column(db.Integer, db.ForeignKey("users.id"))
     starship = db.Column(db.Integer, db.ForeignKey("starships.id"))
     sale_price = db.Column(db.BigInteger, nullable=False)
+    seller_comment = db.Column(db.String(250))
     sale_date = db.Column(db.DateTime, nullable=False)
