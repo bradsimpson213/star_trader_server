@@ -6,7 +6,7 @@ import datetime
 bp = Blueprint("ships", __name__, url_prefix="/ships")
 
 
-#GET ALL SHIP TYPES
+# GET ALL SHIP TYPES
 @bp.route("/types")
 def get_types():
     ship_types = Shiptype.query.all()
@@ -14,7 +14,7 @@ def get_types():
     return {"ship_types": ship_types}
 
 
-#GET ALL STARSHIPS
+# GET ALL STARSHIPS
 @bp.route("/all")
 def get_starships():
     starships = Starship.query.all()
@@ -29,7 +29,7 @@ def get_starships():
     return { "star_ships": starships_return }
 
 
-#GET UNIQUE SHIPS
+# GET UNIQUE SHIPS
 @bp.route("/uniques")
 def get_unique_ships():
     starships = Starship.query.all()
@@ -46,7 +46,7 @@ def get_unique_ships():
     return { "star_ships": starships_return }
 
 
-#GET SHIPS BY CLASS
+# GET SHIPS BY CLASS
 @bp.route("/class/<string:shipclass>")
 def get_ships_by_class(shipclass):
     starships = Starship.query.all()
@@ -63,7 +63,7 @@ def get_ships_by_class(shipclass):
     return {"star_ships": starships_return}
 
 
-#GET STARSHIP BY ID
+# GET STARSHIP BY ID
 @bp.route("/<int:shipId>")
 def get_one_starship(shipId):
     starship = Starship.query.get(shipId)
@@ -75,7 +75,7 @@ def get_one_starship(shipId):
     return {"star_ship": starship}
 
 
-#GET STARTSHIP BY USER ID
+# GET STARTSHIP BY USER ID
 @bp.route("/user/<int:userId>")
 def get_ship_by_user(userId):
     starships = Starship.query.filter(Starship.owner==userId).all()
@@ -90,9 +90,9 @@ def get_ship_by_user(userId):
 
 
 
-
+# CREATE NEW SHIP ROUTE
 @bp.route("/create", methods=["POST"])
-# @require_auth
+@require_auth
 def creat_ship():
     data = request.json
  

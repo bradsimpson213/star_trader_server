@@ -29,7 +29,7 @@ def user_login():
         return { "error": "Incorrect password" }, 401
 
 
-#GET SPECIES ROUTE
+# GET SPECIES ROUTE
 @bp.route("/species")
 def get_species():
     species = Species.query.all()
@@ -37,7 +37,7 @@ def get_species():
     return { "species": dict_species }
 
 
-#GET USER BY ID ROUTE
+# GET USER BY ID ROUTE
 @bp.route("/<int:userId>")
 def get_user_bt_id(userId):
     user = User.query.get(userId)
@@ -50,7 +50,7 @@ def get_user_bt_id(userId):
     return { "user": user_dict }
 
 
-#CREATE USER ROUTE
+# CREATE USER ROUTE
 @bp.route("/create", methods=["POST"])    
 def create_user():
     data = request.json
@@ -70,7 +70,38 @@ def create_user():
         return jsonify({"error": str(message)}), 400
 
 
+# UPDATE USER ROUTE
+@bp.route("/update/<int:userId>", methods=["PUT"])
+def update_user(userId):
+    data = request.json
+    user = User.query.get(userId)
+    if user:
+        user.name = data['name']
+        user.email = data['email']
+        user.password = data['password']
+        user.species = data['species'] 
+        user.bio = data['bio']
+        user.faction = data['faction']
+        user.credits = data['credits']
+        user.user_image = data['user_image']
+        user.force_points = data['force_points']
+        db.session.commit()
+        return {"message": f"User {userId} was updated!"}
+    else:
+        return {"error": "User Not Found"}, 401
 
+
+# DELETE USER ROUTE
+@bp.route("/delete/<int:userId>", methods=["DELETE"])
+def delete_user(userId):
+    user = User.query.get(userId)
+
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return {"message":f"User {userId} was deleted!" }
+    else:
+        return {"error": "User Not Found"}, 401
 
 
 # CREATE USER WITH WTFORMS
@@ -87,7 +118,6 @@ def create_user():
 #         return {'errors': form.errors}
 
 # LOGIN WITH WTFORMS
-
 # @bp.route("/login", methods=['GET', 'POST'])
 # def user_login():
 #     form = LoginForm()
