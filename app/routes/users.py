@@ -54,9 +54,11 @@ def get_user_bt_id(userId):
 @bp.route("/create", methods=["POST"])    
 def create_user():
     data = request.json
-   
+    rows = db.session.query(User).count() + 2  #not sure why this needs to be +2?
+    print(rows)
+
     try: 
-        user = User(name=data['name'], email=data['email'], password=data['password'],
+        user = User(id=rows, name=data['name'], email=data['email'], password=data['password'],
                     species=data['species'], bio=data['bio'], faction=data['faction'],
                     credits=150000, user_image=data['user_image'], force_points=0)
         db.session.add(user)
