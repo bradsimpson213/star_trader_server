@@ -3,12 +3,11 @@ import jwt
 from flask_login import login_required
 
 from ..config import Config
-from ..models import db, User 
-from ..forms import LoginForm, CreateUser
+from ..models import db, User, Species 
+# from ..forms import LoginForm, CreateUser
 
 
 bp = Blueprint("users", __name__, url_prefix="/users")
-
 
 
 # LOGIN ROUTE
@@ -17,7 +16,7 @@ def user_login():
     data = request.json
     user = User.query.filter(User.email == data['email']).first()
     if not user:
-        return {"error": "Email not found"}, 422
+        return { "error": "Email not found" }, 422
 
     if user.check_password(data['password']):
         starships = user.starships
@@ -25,14 +24,48 @@ def user_login():
         user_dict = user.to_dict()
         user_dict["starships"] = dict_starships
         access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
-        return {'access_token': access_token.decode('UTF-8'), 'user': user_dict }
+        return { "access_token": access_token.decode('UTF-8'), 'user': user_dict }
     else: 
-        return {"error": "Incorrect password"}, 401
+        return { "error": "Incorrect password" }, 401
 
 
-# GET USER INFO BY ID
-# @bp.route("/")
+#GET SPECIES ROUTE
+@bp.route("/species")
+def get_species():
+    species = Species.query.all()
+    dict_species = [specie.to_dict() for specie in species]
+    return { "species": dict_species }
 
+
+#GET USER BY ID ROUTE
+@bp.route("/<int:userId>")
+def get_user_bt_id(userId):
+    user = User.query.get(userId)
+    starships = user.starships
+    dict_starships = [starship.to_dict() for starship in starships]
+    dict_species = user.species_info.to_dict()
+    user_dict = user.to_dict()
+    user_dict["starships"] = dict_starships
+    user_dict["species_info"] = dict_species
+    return { "user": user_dict }
+
+
+#CREATE USER ROUTE
+@bp.route("/create", methods=["POST"])    
+def create_user():
+    data = request.json
+   
+    try: 
+        user = User(name=data['name'], email=data['email'], password=data['password'],
+                    species=data['species'], bio=data['bio'], faction=data['faction'],
+                    credits=150000, user_image=data['user_image'], force_points=0)
+        db.session.add(user)
+        db.session.commit()
+        access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
+        return {"access_token": access_token.decode('UTF-8'), 'user': user.to_dict()}
+    except AssertionError as message:
+        print(str(message))
+        return jsonify({"error": str(message)}), 400
 
 
 

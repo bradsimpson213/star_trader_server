@@ -16,14 +16,25 @@ def get_types():
 @bp.route("/all")
 def get_starships():
     starships = Starship.query.all()
-    starships = [starship.to_dict() for starship in starships]
-    return {"star_ships": starships}
+    starships_return = []
+    for starship in starships:
+        dict_ship_type = starship.starship_type.to_dict()
+        dict_user = starship.user.to_dict()
+        starship = starship.to_dict()
+        starship["starship_type"] = dict_ship_type
+        starship["user"] = dict_user
+        starships_return.append(starship)
+    return {"star_ships": starships_return}
 
 
 @bp.route("/<int:shipId>")
 def get_one_starship(shipId):
     starship = Starship.query.get(shipId)
+    dict_ship_type = starship.starship_type.to_dict()
+    dict_user = starship.user.to_dict()
     starship = starship.to_dict()
+    starship["starship_type"] = dict_ship_type
+    starship["user"] = dict_user
     return {"star_ship": starship}
 
 

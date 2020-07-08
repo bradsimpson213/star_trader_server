@@ -18,10 +18,8 @@ class User(db.Model, UserMixin):
     user_image = db.Column(db.String(150), nullable=False)
     force_points = db.Column(db.Integer, default=0)
     
-    starships = db.relationship("Starship", back_populates="user", lazy="dynamic")
-    # print(db.relationship("Starship"))
-    # print(starships)
-    # dict_starships = [ starship.to_dict() for starship in list(starships)]
+    starships = db.relationship("Starship", back_populates="user")
+    species_info = db.relationship("Species", back_populates="user_info")
 
     @property
     def password(self):
@@ -34,7 +32,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-
     def to_dict(self):
         return {"id": self.id, "name": self.name, "email": self.email, "species": self.species, "bio": self.bio,
                 "faction": self.faction, "credit": self.credits, "user_image": self.user_image, "force_points": self.force_points, "starships": {} }
@@ -45,6 +42,11 @@ class Species(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     species_type = db.Column(db.String(75), nullable=False)
+
+    user_info = db.relationship("User", back_populates="species_info")
+
+    def to_dict(self):
+        return {"id": self.id, "species_type": self.species_type }
 
 
 class Shiptype(db.Model):
@@ -90,8 +92,9 @@ class Starship(db.Model):
     starship_type = db.relationship("Shiptype", back_populates="ship")
 
     def to_dict(self):
-        return {"ship_type": self.ship_type, "custom_name": self.custom_name, "sale_price": self.sale_price,
-                "lightyears_traveled": self.lightyears_traveled, }
+        return {"id": self.id, "ship_type": self.ship_type, "custom_name": self.custom_name, "sale_price": self.sale_price,
+                "lightyears_traveled": self.lightyears_traveled, "owner": self.owner, "for_sale": self.for_sale, 
+                "post_date": self.post_date, "user": {}, "starship_type": {} }
 
 class Transaction(db.Model):
     __tablename__ = "transactions"
