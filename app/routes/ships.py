@@ -6,6 +6,7 @@ import datetime
 bp = Blueprint("ships", __name__, url_prefix="/ships")
 
 
+#GET ALL SHIP TYPES
 @bp.route("/types")
 def get_types():
     ship_types = Shiptype.query.all()
@@ -13,6 +14,7 @@ def get_types():
     return {"ship_types": ship_types}
 
 
+#GET ALL STARSHIPS
 @bp.route("/all")
 def get_starships():
     starships = Starship.query.all()
@@ -24,9 +26,44 @@ def get_starships():
         starship["starship_type"] = dict_ship_type
         starship["user"] = dict_user
         starships_return.append(starship)
+    return { "star_ships": starships_return }
+
+
+#GET UNIQUE SHIPS
+@bp.route("/uniques")
+def get_unique_ships():
+    starships = Starship.query.all()
+    starships_return = []
+    for starship in starships:
+        ship_type = starship.starship_type
+        if ship_type.unique == True:
+            dict_ship_type = ship_type.to_dict()
+            dict_user = starship.user.to_dict()
+            starship = starship.to_dict()
+            starship["starship_type"] = dict_ship_type
+            starship["user"] = dict_user
+            starships_return.append(starship)
+    return { "star_ships": starships_return }
+
+
+#GET SHIPS BY CLASS
+@bp.route("/class/<string:shipclass>")
+def get_ships_by_class(shipclass):
+    starships = Starship.query.all()
+    starships_return = []
+    for starship in starships:
+        ship_type = starship.starship_type
+        if ship_type.starship_class == shipclass:
+            dict_ship_type = ship_type.to_dict()
+            dict_user = starship.user.to_dict()
+            starship = starship.to_dict()
+            starship["starship_type"] = dict_ship_type
+            starship["user"] = dict_user
+            starships_return.append(starship)
     return {"star_ships": starships_return}
 
 
+#GET STARSHIP BY ID
 @bp.route("/<int:shipId>")
 def get_one_starship(shipId):
     starship = Starship.query.get(shipId)
@@ -38,10 +75,38 @@ def get_one_starship(shipId):
     return {"star_ship": starship}
 
 
-# @bp.route("/create", methods="POST")
+#GET STARTSHIP BY USER ID
+@bp.route("/user/<int:userId>")
+def get_ship_by_user(userId):
+    starships = Starship.query.filter(Starship.owner==userId).all()
+    starships_return = []
+    for starship in starships:
+        dict_ship_type = starship.starship_type.to_dict()
+        starship = starship.to_dict()
+        starship["starship_type"] = dict_ship_type
+        starships_return.append(starship)
+    return {"star_ships": starships_return}
+
+
+
+
+
+@bp.route("/create", methods=["POST"])
 # @require_auth
-# def creat_ship():
-#     data = request.json
-#     print(data.body)
-#     {'id': , 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': ,
-#         'for_sale': , 'seller_comment': , 'post_date': datetime.datetime.now()}
+def creat_ship():
+    data = request.json
+ 
+    rows = db.session.query(Starship).count() + 2
+    print(rows)
+
+    try:
+        starship = Starship(id=rows, ship_type=data['ship_type'], custom_name=data['custom_name'], sale_price=data['sale_price'],
+                            lightyears_traveled=data['lightyears_traveled'], owner=data['owner'], for_sale=data['for_sale'],
+                            seller_comment=data['seller_comment'], post_date=datetime.datetime.now())
+        db.session.add(starship)
+        db.session.commit()
+        return {"starship": starship.to_dict()}, 200
+    except AssertionError as message:
+        print(str(message))
+        return jsonify({"error": str(message)}), 400
+

@@ -44,7 +44,7 @@ def upgrade():
         {'id': 6, 'ship_type': 21, 'custom_name': "Boba Fett's Ship", 'sale_price': 249999, 'lightyears_traveled': 24587, 'owner': 22, 'for_sale': True, 'seller_comment': "Great ship for hunting down Jedis or smugglers named Solo",'post_date': datetime.datetime.now()},
         {'id': 7, 'ship_type': 12, 'custom_name': "Lauretta", 'sale_price': 105000, 'lightyears_traveled': 350950, 'owner': 18, 'for_sale': True, 'seller_comment': 'Used X-wing fighter for sale, needs new hyperdrive, cockpit smells like Wookie...','post_date': datetime.datetime.now()},
         {'id': 8, 'ship_type': 3, 'custom_name': "Star Destroyer #127", 'sale_price': 12000000, 'lightyears_traveled': 157000, 'owner': 21, 'for_sale': True, 'seller_comment': 'I have so many Star Destroyers, this one no longer pleases me.','post_date': datetime.datetime.now()},
-        # {'id': 9, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '','post_date': datetime.datetime.now()}
+        {'id': 9, 'ship_type': 22, 'custom_name': "Imperial Shuttle #291", 'sale_price': 143000, 'lightyears_traveled': 251000, 'owner': 14, 'for_sale': True, 'seller_comment': 'Won this from a Corellian Trader in a game of sabacc...  Its no Millenium Falcon so its up for sale!','post_date': datetime.datetime.now()}
         # {'id': 10, 'ship_type': , 'custom_name': , 'sale_price': , 'lightyears_traveled': , 'owner': , 'for_sale': , 'seller_comment': '', 'post_date': datetime.datetime.now()}
         ]
     )
