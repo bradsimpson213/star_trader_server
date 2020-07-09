@@ -98,10 +98,22 @@ def update_user(userId):
     if user:
         if user.check_password(data['old_password']):
             user.password = data['new_password']
- 
             db.session.commit()
-            access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
-            return {"access_token": access_token.decode('UTF-8'), 'user': user.to_dict()}
+            return {'user': user.to_dict()}
+    else:
+        return {"error": "User Not Found"}, 401
+
+
+# ADD USER CREDITS
+@bp.route("/fundcredits/<int:userId>", methods=["PUT"])
+def update_user(userId):
+    data = request.json
+    user = User.query.get(userId)
+
+    if user:
+        user.credits += data['credits']
+        db.session.commit()
+        return {'user': user.to_dict()}
     else:
         return {"error": "User Not Found"}, 401
 
