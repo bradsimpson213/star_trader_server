@@ -14,7 +14,10 @@ def require_auth(func):
       return {'error': 'authentication required'}, 401
     try:
       decoded = jwt.decode(access_token, Config.SECRET_KEY)
-      # user = User.query.filter(User.email == decoded.get('email')).first()
+      print("Decoded:", decoded)
+      user = User.query.filter(User.email == decoded.get('email')).first()
+      print("Auth Success!")
+      return {'message': "Authorization Sucessful"}
     except:
       return {'error': 'invalid auth token'}, 401
     return func(*args, **kwargs)

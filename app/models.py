@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {"id": self.id, "name": self.name, "email": self.email, "species": self.species, "bio": self.bio,
+        return { "id": self.id, "name": self.name, "email": self.email, "species": self.species, "bio": self.bio,
                 "faction": self.faction, "credit": self.credits, "user_image": self.user_image, "force_points": self.force_points, "starships": {} }
 
 
@@ -46,7 +46,7 @@ class Species(db.Model):
     user_info = db.relationship("User", back_populates="species_info")
 
     def to_dict(self):
-        return {"id": self.id, "species_type": self.species_type }
+        return { "id": self.id, "species_type": self.species_type }
 
 
 class Shiptype(db.Model):
@@ -71,7 +71,7 @@ class Shiptype(db.Model):
     ship = db.relationship("Starship", back_populates="starship_type")
 
     def to_dict(self):
-        return {"id": self.id, "type_name": self.type_name, "starship_class": self.starship_class, "manufacturer": self.manufacturer,
+        return { "id": self.id, "type_name": self.type_name, "starship_class": self.starship_class, "manufacturer": self.manufacturer,
                 "model": self.model, "hyperdrive_rating": self.hyperdrive_rating, "mglt": self.mglt, "length": self.length,
                 "crew": self.crew, "passenger": self.passenger, "cargo": self.cargo, "consumables": self.consumables, 
                 "cost_credits": self.cost_credits, "ship_image": self.ship_image, "unique": self.unique }
@@ -93,7 +93,7 @@ class Starship(db.Model):
     starship_type = db.relationship("Shiptype", back_populates="ship")
 
     def to_dict(self):
-        return {"id": self.id, "ship_type": self.ship_type, "custom_name": self.custom_name, "sale_price": self.sale_price,
+        return { "id": self.id, "ship_type": self.ship_type, "custom_name": self.custom_name, "sale_price": self.sale_price,
                 "lightyears_traveled": self.lightyears_traveled, "owner": self.owner, "for_sale": self.for_sale, "seller_comment": self.seller_comment, 
                 "post_date": self.post_date, "user": {}, "starship_type": {} }
 
@@ -105,5 +105,8 @@ class Transaction(db.Model):
     seller = db.Column(db.Integer, db.ForeignKey("users.id"))
     starship = db.Column(db.Integer, db.ForeignKey("starships.id"))
     sale_price = db.Column(db.BigInteger, nullable=False)
-    seller_comment = db.Column(db.String(250))
     sale_date = db.Column(db.DateTime, nullable=False)
+
+    def to_dict():
+        return { "id": self.id, "buyer": self.buyer, "seller": self.seller, "starship": self.starship,
+                 "sale_price": self.sale_price, "sale_date": self.sale_date }

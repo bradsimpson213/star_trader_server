@@ -88,19 +88,14 @@ def get_ship_by_user(userId):
     return {"star_ships": starships_return}
 
 
-
-
 # CREATE NEW SHIP ROUTE
 @bp.route("/create", methods=["POST"])
-@require_auth
+# @require_auth
 def creat_ship():
     data = request.json
- 
-    rows = db.session.query(Starship).count() + 2
-    print(rows)
 
     try:
-        starship = Starship(id=rows, ship_type=data['ship_type'], custom_name=data['custom_name'], sale_price=data['sale_price'],
+        starship = Starship(ship_type=data['ship_type'], custom_name=data['custom_name'], sale_price=data['sale_price'],
                             lightyears_traveled=data['lightyears_traveled'], owner=data['owner'], for_sale=data['for_sale'],
                             seller_comment=data['seller_comment'], post_date=datetime.datetime.now())
         db.session.add(starship)
@@ -110,3 +105,36 @@ def creat_ship():
         print(str(message))
         return jsonify({"error": str(message)}), 400
 
+
+# UPDATE SHIP ROUTE
+@bp.route("/update/<int:shipId>", methods=["PUT"])
+def update_user(shipId):
+    data = request.json
+    starship = Starship.query.get(shipId)
+
+    if starship:
+        starship.ship_type = data['ship_type']
+        starship.custom_name = data['custom_name']
+        starship.sale_price = data['sale_price']
+        starship.lightyears_traveled = data['lightyears_traveled']
+        starship.owner = data['owner']
+        starship.for_sale = data['for_sale']
+        starship.seller_comment = data['seller_comment']
+        starship.post_date = datetime.datetime.now()
+        db.session.commit()
+        return {"message": f"Starship {shipId} was updated!"}
+    else:
+        return {"error": "Starship Not Found"}, 401
+
+
+# DELETE SHIP ROUTE
+@bp.route("/delete/<int:shipId>", methods=["DELETE"])
+def delete_user(shipId):
+    starship = Starship.query.get(shipId)
+
+    if starship:
+        db.session.delete(starship)
+        db.session.commit()
+        return {"message": f"Starship {shipId} was deleted!"}
+    else:
+        return {"error": "User Not Found"}, 401
