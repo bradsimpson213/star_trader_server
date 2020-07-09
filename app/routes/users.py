@@ -24,7 +24,7 @@ def user_login():
         user_dict = user.to_dict()
         user_dict["starships"] = dict_starships
         access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
-        return { "access_token": access_token.decode('UTF-8'), 'user': user_dict }
+        return {"access_token": access_token.decode('UTF-8'), 'user': user_dict}
     else: 
         return { "error": "Incorrect password" }, 401
 
@@ -61,6 +61,7 @@ def create_user():
                     credits=150000, user_image=data['user_image'], force_points=0)
         db.session.add(user)
         db.session.commit()
+
         access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
         return {"access_token": access_token.decode('UTF-8'), 'user': user.to_dict()}
     except AssertionError as message:
@@ -81,11 +82,10 @@ def update_user(userId):
         user.species = data['species'] 
         user.bio = data['bio']
         user.faction = data['faction']
-        user.credits = data['credits']
         user.user_image = data['user_image']
-        user.force_points = data['force_points']
         db.session.commit()
-        return {"message": f"User {userId} was updated!"}
+        access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
+        return {"access_token": access_token.decode('UTF-8'), 'user': user.to_dict()}
     else:
         return {"error": "User Not Found"}, 401
 
@@ -98,7 +98,8 @@ def delete_user(userId):
     if user:
         db.session.delete(user)
         db.session.commit()
-        return {"message":f"User {userId} was deleted!" }
+        access_token = jwt.encode({'email': ''}, Configuration.SECRET_KEY)
+        return {'access_token': access_token.decode('UTF-8'), 'user': ''}
     else:
         return {"error": "User Not Found"}, 401
 

@@ -92,10 +92,10 @@ def get_ship_by_user(userId):
 
 # CREATE NEW SHIP ROUTE
 @bp.route("/create", methods=["POST"])
-# @require_auth
+@require_auth
 def creat_ship():
     data = request.json
-
+    print(data)
     try:
         starship = Starship(ship_type=data['ship_type'], custom_name=data['custom_name'], sale_price=data['sale_price'],
                             lightyears_traveled=data['lightyears_traveled'], owner=data['owner'], for_sale=data['for_sale'],
@@ -110,6 +110,7 @@ def creat_ship():
 
 # UPDATE SHIP ROUTE
 @bp.route("/update/<int:shipId>", methods=["PUT"])
+@require_auth
 def update_user(shipId):
     data = request.json
     starship = Starship.query.get(shipId)
@@ -131,6 +132,7 @@ def update_user(shipId):
 
 # DELETE SHIP ROUTE
 @bp.route("/delete/<int:shipId>", methods=["DELETE"])
+@require_auth
 def delete_user(shipId):
     starship = Starship.query.get(shipId)
 

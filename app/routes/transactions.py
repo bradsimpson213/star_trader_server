@@ -11,6 +11,7 @@ bp = Blueprint("transactions", __name__, url_prefix="/transactions")
 
 # SELL SHIP TRANSACTION ROUTE
 @bp.route("", methods=["POST"])
+@require_auth
 def ship_transaction():
     data = request.json
     ship_sold = data['starship']
