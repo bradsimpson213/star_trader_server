@@ -107,6 +107,6 @@ class Transaction(db.Model):
     sale_price = db.Column(db.BigInteger, nullable=False)
     sale_date = db.Column(db.DateTime, nullable=False)
 
-    def to_dict():
+    def to_dict(self):
         return { "id": self.id, "buyer": self.buyer, "seller": self.seller, "starship": self.starship,
                  "sale_price": self.sale_price, "sale_date": self.sale_date }

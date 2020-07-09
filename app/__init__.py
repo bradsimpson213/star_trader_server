@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 from .config import Config
-from .models import db
+from ..models import db
 from .routes import users, ships, transactions
 from flask_migrate import Migrate
 

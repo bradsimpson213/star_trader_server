@@ -3,8 +3,9 @@ import jwt
 from flask_login import login_required
 
 from ..config import Config
-from ..models import db, User, Species 
-# from ..forms import LoginForm, CreateUser
+from ..models import db
+from ..models.users import User
+from ..models.species import Species 
 
 
 bp = Blueprint("users", __name__, url_prefix="/users")

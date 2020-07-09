@@ -1,5 +1,7 @@
 from flask import Blueprint, request
-from ..models import db, Starship, Shiptype 
+from ..models import db
+from ..models.starships import Starship
+from ..models.shiptypes import Shiptype 
 from ..auth import require_auth
 import datetime
 
