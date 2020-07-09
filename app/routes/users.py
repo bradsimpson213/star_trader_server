@@ -69,7 +69,7 @@ def create_user():
         return jsonify({"error": str(message)}), 400
 
 
-# UPDATE USER ROUTE
+# UPDATE USER ROUTE (NOT PASSWORD)
 @bp.route("/update/<int:userId>", methods=["PUT"])
 def update_user(userId):
     data = request.json
@@ -78,7 +78,6 @@ def update_user(userId):
     if user:
         user.name = data['name']
         user.email = data['email']
-        user.password = data['password']
         user.species = data['species'] 
         user.bio = data['bio']
         user.faction = data['faction']
@@ -86,6 +85,23 @@ def update_user(userId):
         db.session.commit()
         access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
         return {"access_token": access_token.decode('UTF-8'), 'user': user.to_dict()}
+    else:
+        return {"error": "User Not Found"}, 401
+
+
+# UPDATE USER PASSWORD (PASSWORD ONLY)
+@bp.route("/updatepassword/<int:userId>", methods=["PUT"])
+def update_user(userId):
+    data = request.json
+    user = User.query.get(userId)
+
+    if user:
+        if user.check_password(data['old_password']):
+            user.password = data['new_password']
+ 
+            db.session.commit()
+            access_token = jwt.encode({'email': user.email}, Config.SECRET_KEY)
+            return {"access_token": access_token.decode('UTF-8'), 'user': user.to_dict()}
     else:
         return {"error": "User Not Found"}, 401
 
