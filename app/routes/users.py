@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 import jwt
 from flask_login import login_required
-
 from ..config import Config
 from ..models import db
 from ..models.users import User

@@ -1,6 +1,6 @@
 from ..models import db
-from ..models.shiptypes import Shiptype
-from ..models.users import User
+# from ..models.shiptypes import Shiptype
+# from ..models.users import User
 
 class Starship(db.Model):
     __tablename__ = "starships"

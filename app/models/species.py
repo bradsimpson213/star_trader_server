@@ -1,5 +1,5 @@
 from ..models import db
-from ..models.users import User
+# from ..models.users import User
 
 
 class Species(db.Model):

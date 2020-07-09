@@ -1,6 +1,6 @@
 from ..models import db
-from ..models.starships import Starship
-from ..models.users import User
+# from ..models.starships import Starship
+# from ..models.users import User
 
 
 class Transaction(db.Model):
