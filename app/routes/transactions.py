@@ -29,7 +29,9 @@ def ship_transaction():
                                     sale_price=ship_price, sale_date=datetime.datetime.now())
             db.session.add(transaction)
             buyer_ship.credits -= ship_price
+            buyer_ship.force_points += 1
             seller_ship.credits += ship_price
+            seller_ship.force_points += 1
             sold_ship.owner = buyer_ship.id
             sold_ship.for_sale = False
             db.session.commit()
@@ -39,3 +41,12 @@ def ship_transaction():
             return jsonify({"error": str(message)}), 400
     else:
         return {"error": "Buyer does not have enough credits to buy Starship"}
+
+
+# TRANSACTIONS BY USER
+@bp.route("/user/<int:userId>")
+@require_auth
+def transactions_by_user(userId):
+    transactions = Transaction.query.filter(Transaction.buyer == userId or Transaction.seller == userId ).all()
+    print(transaction)
+ 
