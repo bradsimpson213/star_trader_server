@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from sqlalchemy import or_
 from ..models import db
 from ..models.transactions import Transaction
 from ..models.users import User
@@ -45,8 +46,17 @@ def ship_transaction():
 
 # TRANSACTIONS BY USER
 @bp.route("/user/<int:userId>")
-# @require_auth
+@require_auth
 def transactions_by_user(userId):
-    transactions = Transaction.query.filter(Transaction.buyer == userId or Transaction.seller == userId ).all()
-    print(transaction)
- 
+    transactions = Transaction.query.filter(or_(Transaction.buyer == userId, Transaction.seller == userId)).all()
+    dict_transactions = [transaction.to_dict() for transaction in transactions]
+    return {'transactions': dict_transactions }
+
+
+# TRANSACTIONS BY SHIP
+@bp.route("/ship/<int:shipId>")
+@require_auth
+def transactions_by_ship(shipId):
+    transactions = Transaction.query.filter(Transaction.starship == shipId).all()
+    dict_transactions = [transaction.to_dict() for transaction in transactions]
+    return {'transactions': dict_transactions}
