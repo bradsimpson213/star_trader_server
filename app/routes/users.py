@@ -90,8 +90,8 @@ def update_user(userId):
 
 
 # UPDATE USER PASSWORD (PASSWORD ONLY)
-@bp.route("/updatepassword/<int:userId>", methods=["PUT"])
-def update_user(userId):
+@bp.route("/password/<int:userId>", methods=["PUT"])
+def update_password(userId):
     data = request.json
     user = User.query.get(userId)
 
@@ -106,7 +106,7 @@ def update_user(userId):
 
 # ADD USER CREDITS
 @bp.route("/fundcredits/<int:userId>", methods=["PUT"])
-def update_user(userId):
+def fund_user(userId):
     data = request.json
     user = User.query.get(userId)
 
