@@ -45,7 +45,7 @@ def ship_transaction():
 
 # TRANSACTIONS BY USER
 @bp.route("/user/<int:userId>")
-@require_auth
+# @require_auth
 def transactions_by_user(userId):
     transactions = Transaction.query.filter(Transaction.buyer == userId or Transaction.seller == userId ).all()
     print(transaction)

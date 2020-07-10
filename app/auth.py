@@ -18,6 +18,6 @@ def require_auth(func):
       user = User.query.filter(User.email == decoded_jwt.get('email')).first()
       print("Auth Success!")
     except:
-      return {'error': 'invalid auth token'}, 401
+      return {'error': 'Please Log In to Continue...'}, 401
     return func(*args, **kwargs)
   return wrapped
