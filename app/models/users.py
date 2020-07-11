@@ -1,5 +1,5 @@
 from ..models import db
-# from ..models.species import Species
+# from ..models.transactions import Transaction
 # from ..models.starships import Starship
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,8 +19,10 @@ class User(db.Model, UserMixin):
     user_image = db.Column(db.String(150), nullable=False)
     force_points = db.Column(db.Integer, default=0)
 
-    starships = db.relationship("Starship", back_populates="user")
+    starships = db.relationship("Starship", back_populates="user", cascade="all, delete-orphan")
     species_info = db.relationship("Species", back_populates="user_info")
+   
+
 
     @property
     def password(self):

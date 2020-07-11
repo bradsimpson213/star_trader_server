@@ -2,7 +2,7 @@ A long time ago in a galaxy far far away...
 
 They needed a platform to sell used starships...
 
-# WELCOME TO STAR TRADER 
+# WELCOME TO STAR TRADER SERVER
 
 ## MVP
 - Ability to create new users and have user login with authorization

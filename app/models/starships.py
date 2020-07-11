@@ -17,6 +17,8 @@ class Starship(db.Model):
 
     user = db.relationship("User", back_populates="starships")
     starship_type = db.relationship("Shiptype", back_populates="ship")
+    transaction = db.relationship(
+        "Transaction", back_populates="ship", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {"id": self.id, "ship_type": self.ship_type, "custom_name": self.custom_name, "sale_price": self.sale_price,

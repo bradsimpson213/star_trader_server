@@ -4,7 +4,8 @@ from flask_login import login_required
 from ..config import Config
 from ..models import db
 from ..models.users import User
-from ..models.species import Species 
+from ..models.species import Species
+from ..models.transactions import Transaction
 
 
 bp = Blueprint("users", __name__, url_prefix="/users")
@@ -126,7 +127,7 @@ def delete_user(userId):
     if user:
         db.session.delete(user)
         db.session.commit()
-        access_token = jwt.encode({'email': ''}, Configuration.SECRET_KEY)
+        access_token = jwt.encode({'email': ''}, Config.SECRET_KEY)
         return {'access_token': access_token.decode('UTF-8'), 'user': ''}
     else:
         return {"error": "User Not Found"}, 401
