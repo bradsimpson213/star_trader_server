@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 
 
 app = Flask(__name__)
-CORS(app, origins=["https://startrader-app.herokuapp.com", "https://localhost:5000"])
+CORS(app, origins=["https://startrader-app.herokuapp.com", "https://localhost:5000", "http://startrader-app.herokuapp.com"])
 app.config.from_object(Config)
 
 app.register_blueprint(users.bp)
