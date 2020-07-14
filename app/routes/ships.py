@@ -97,9 +97,14 @@ def creat_ship():
     data = request.json
     print(data)
     try:
-        starship = Starship(ship_type=data['ship_type'], custom_name=data['custom_name'], sale_price=data['sale_price'],
-                            lightyears_traveled=data['lightyears_traveled'], owner=data['owner'], for_sale=data['for_sale'],
-                            seller_comment=data['seller_comment'], post_date=datetime.datetime.now())
+        starship = Starship(ship_type=data['ship_type'], 
+                            custom_name=data['custom_name'], 
+                            sale_price=data['sale_price'], 
+                            ightyears_traveled=data['lightyears_traveled'], 
+                            owner=data['owner'], 
+                            for_sale=data['for_sale'],
+                            seller_comment=data['seller_comment'], 
+                            post_date=datetime.datetime.now())
         db.session.add(starship)
         db.session.commit()
         return {"starship": starship.to_dict()}, 200
@@ -116,7 +121,6 @@ def update_user(shipId):
     starship = Starship.query.get(shipId)
 
     if starship:
-        starship.ship_type = data['ship_type']
         starship.custom_name = data['custom_name']
         starship.sale_price = data['sale_price']
         starship.lightyears_traveled = data['lightyears_traveled']
