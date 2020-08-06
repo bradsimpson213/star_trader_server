@@ -165,3 +165,4 @@
                'faction': True, 'credits': 152000, 'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/31.jpg', "force_points": 0}
           ]
      )     
+     flask db downgrade && flask db downgrade && flask db downgrade && flask db downgrade && flask db downgrade && flask db upgrade &&
