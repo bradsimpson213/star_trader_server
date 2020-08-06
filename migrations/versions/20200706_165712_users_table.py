@@ -37,7 +37,7 @@ def upgrade():
      op.bulk_insert(users_table, 
           [
           {'name': 'Luke Skywalker', 'email': 'lukeskywalker@aol.com''hashed_password': generate_password_hash('force1'), 'species': 1, 'bio': 'Luke Skywalker was a Tatooine farm boy who rose from humble beginnings to become one of the greatest Jedi the galaxy has ever known.',
-               'faction': True, 'credits': 1000000, 'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/01.jpg', "force_points": 0},
+               'faction': True, 'credits': 1000000, 'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/01.jpg', "force_points": 0 },
           {'name': 'C-3PO', 'email': 'goldguy@gmail.com', 'hashed_password': generate_password_hash('masterluke'), 'species': 2, 'bio': 'C-3PO longs for more peaceful times, but his continued service to the Resistance — and his knowledge of more than seven million forms of communication — keeps the worry-prone droid in the frontlines of galactic conflict.',
                'faction': True, 'credits': 1000, 'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/02.jpg', "force_points": 0},
           {'name': 'R2-D2', 'email': 'droid1@R2D2.net', 'hashed_password': generate_password_hash('xwingsrule4'), 'species': 2, 'bio': 'A reliable and versatile astromech droid, R2-D2 has served Padmé Amidala, Anakin Skywalker, and Luke Skywalker in turn, showing great bravery in rescuing his masters and their friends from many perils',
