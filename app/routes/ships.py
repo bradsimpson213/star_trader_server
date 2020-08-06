@@ -100,7 +100,7 @@ def creat_ship():
         starship = Starship(ship_type=data['ship_type'], 
                             custom_name=data['custom_name'], 
                             sale_price=data['sale_price'], 
-                            ightyears_traveled=data['lightyears_traveled'], 
+                            lightyears_traveled=data['lightyears_traveled'], 
                             owner=data['owner'], 
                             for_sale=data['for_sale'],
                             seller_comment=data['seller_comment'], 
